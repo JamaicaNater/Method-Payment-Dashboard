@@ -9,4 +9,4 @@ fmt:
 	cd app && cargo fmt
 clean:
 	docker compose down --remove-orphans
-	docker volume rm method_assesment_my-db
+	docker volume rm method-payment-dashboard_my-db

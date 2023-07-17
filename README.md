@@ -1,7 +1,7 @@
 # Method Based Payment Processor
 ## Run Instructions
 To run this program, simply run `METHOD_API_KEY={your_key} make up` (you may need to prefix with sudo, depending on your config) to spin up the DB (localhost:3306), API (localhost:3001), and UI (localhost:3000).
-Note: cargo is takes especially long to build in docker, first run may take 10-15m to compose
+Note: cargo is takes especially long to build in docker. The first run may take 10-15m to compose as you will need to download and compose several dependencies.
 
 ## Additional Info
 Upon running, you can go to the dashboard page by clicking your icon. There, you will find the Dashboard option. Upon navigating to this page you will be able to upload your XML for parsing as well as view previous reports
