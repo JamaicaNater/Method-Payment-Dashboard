@@ -1,0 +1,59 @@
+CREATE TABLE IF NOT EXISTS XmlParse (
+    Id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+    Status VARCHAR(255),
+    Filename VARCHAR(255),
+    StartedAt VARCHAR(255),
+    FinishedAt VARCHAR(255),
+    PRIMARY KEY(Id)
+);
+
+CREATE TABLE IF NOT EXISTS Employees (
+    MethodId VARCHAR(255) NOT NULL,
+    DunkinId VARCHAR(255) UNIQUE NOT NULL,
+    DunkinBranch VARCHAR(255),
+    FirstName VARCHAR(255),
+    LastName VARCHAR(255),
+    Dob VARCHAR(32),
+    PhoneNumber VARCHAR(32),
+    PRIMARY KEY(MethodId)
+);
+
+CREATE TABLE IF NOT EXISTS Addresses (
+    Id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+    Line1 VARCHAR(255),
+    City VARCHAR(255),
+    StateName VARCHAR(255),
+    Zip INT UNSIGNED,
+    PRIMARY KEY(Id)
+);
+
+CREATE TABLE IF NOT EXISTS Payors (
+    MethodId VARCHAR(255) NOT NULL,
+    DunkinId VARCHAR(255) UNIQUE NOT NULL,
+    PayorName VARCHAR(255),
+    Dba VARCHAR(255),
+    Ein VARCHAR(255),
+    AddressId INT UNSIGNED,
+    PRIMARY KEY(MethodId),
+    FOREIGN KEY (AddressId) REFERENCES Addresses(Id)
+);
+
+CREATE TABLE IF NOT EXISTS Payees (
+    MethodId VARCHAR(255) NOT NULL,
+    PlaidId VARCHAR(255) UNIQUE NOT NULL,
+    PRIMARY KEY(MethodId)
+);
+
+CREATE TABLE IF NOT EXISTS Transactions (
+    MethodId VARCHAR(255) NOT NULL,
+    EmployeeId VARCHAR(255),
+    PayorId VARCHAR(255),
+    PayeeId VARCHAR(255),
+    XmlId INT UNSIGNED,
+    Amount INT UNSIGNED,
+    PRIMARY KEY(MethodId),
+    FOREIGN KEY (EmployeeId) REFERENCES Employees(MethodId),
+    FOREIGN KEY (PayorId) REFERENCES Payors(MethodId),
+    FOREIGN KEY (PayeeId) REFERENCES Payees(MethodId),
+    FOREIGN KEY (XmlId) REFERENCES XmlParse(Id)
+);

@@ -1,0 +1,30 @@
+[package]
+name = "method_assesment"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[[bin]]
+name = "method_assesment"
+path = "src/main.rs"
+
+[dependencies]
+axum = { version = "0.6.18", features = ["multipart"] }
+tokio = { version = "1.29.1", features = ["full"] }
+hyper = { version = "0.14.27" , features = ["full"] }
+sqlx = { version = "0.7.0", features = ["mysql", "runtime-tokio"] }
+reqwest = "0.11.18"
+tower = "0.4.13"
+tower-http = { version = "0.4.1", features = ["cors"] }
+envconfig = "0.10.0"
+sql-builder = "3.1"
+serde = {version = "1.0.166", features = ["derive"]}
+hyper-tls = "0.5.0"
+serde_json = "1.0.100"
+async-trait = "0.1.71"
+xml = "0.8"
+env_logger = "0.10.0"
+log = "0.4.19"
+thiserror = "1.0.43"
+chrono = "0.4.26"
+lazy_static = "1.4.0"

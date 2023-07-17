@@ -1,0 +1,12 @@
+# Ignore build artifacts and dependencies
+/node_modules/
+/build/
+/coverage/
+
+# Ignore development server files
+.env
+.env.local
+
+# Ignore any editor-specific files
+.idea/
+.vscode/

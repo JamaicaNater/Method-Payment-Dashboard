@@ -1,0 +1,56 @@
+version: '3.8'
+services:
+  db:
+    container_name: method-db
+    image: mysql:5.7
+    restart: always
+    healthcheck:
+      test: mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -e "SELECT 1"
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    env_file:
+      - .env
+    ports:
+      - '3306:3306'
+    volumes:
+      - my-db:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/0-init.sql
+      - ./db/seed.sql:/docker-entrypoint-initdb.d/1-seed.sql
+
+  react-app:
+    build:
+      context: ./ui
+      dockerfile: ui.Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./ui:/app
+    environment:
+      - NODE_ENV=development
+    command:
+      - "npm"
+      - "run"
+      - "start"
+    depends_on:
+      rust-app:
+        condition: "service_started"
+
+  rust-app:
+    build:
+      context: ./app
+      dockerfile: app.Dockerfile
+    env_file:
+      - .env
+    environment:
+      - METHOD_API_KEY=${METHOD_API_KEY}
+    ports:
+      - '3001:3001'
+    depends_on:
+      db:
+        condition: "service_healthy"
+    command:
+      - "run"
+
+volumes:
+  my-db:
