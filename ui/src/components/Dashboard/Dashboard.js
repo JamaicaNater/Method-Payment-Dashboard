@@ -149,7 +149,7 @@ function Dashboard() {
             data.payment_statuses = data.payment_statuses.map(pm_status => {
                 return { ...pm_status, amount: "$" + pm_status.amount / 100 };
             });
-            const ps_title = "\nPayment Statuses";
+            const ps_title = "\nPayment statuses";
             const ps_head = Object.keys(data.payment_statuses[0]).join(',');
             const ps_body = data.payment_statuses.map(row => Object.values(row).join(',')).join('\n');
             csv.push([ps_title, ps_head, ps_body].join('\n'))

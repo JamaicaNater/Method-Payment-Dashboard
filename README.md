@@ -1,6 +1,6 @@
 # Method Based Payment Processor
 ## Run Instructions
-To run this program, simply run `METHOD_API_KEY={your_key} make up` to spin up the DB (localhost:3306), API (localhost:3001), and UI (localhost:3000).
+To run this program, simply run `METHOD_API_KEY={your_key} make up` (you may need to prefix with sudo, depending on your config) to spin up the DB (localhost:3306), API (localhost:3001), and UI (localhost:3000).
 Note: cargo is takes especially long to build in docker, first run may take 10-15m to compose
 
 ## Additional Info
